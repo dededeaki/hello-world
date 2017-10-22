@@ -1,15 +1,57 @@
-<script>
-  function warota(){
-    alert("おっすｗｗ")
-  }
-</script>
+<head>
+<script type="text/javascript">
+function hiroki(){
+  var txt = document.getElementById("inText").value;
 
+  var len = txt.length;
+  if(len <= 2){
+    document.getElementById("ryaku").innerHTML = txt + "って、これ以上略せないやろ！";
+    return;
+  }
+
+  var ryakuLength = Math.floor(Math.random()* len);
+  if(ryakuLength < 2){
+    ryakuLength = 2;
+  }
+
+  console.log("ryakuLen = " + ryakuLength);
+
+  var indexAry = [];
+  var index;
+  for(var i = 0; i < ryakuLength; i ++){
+
+    index = Math.floor(Math.random()* len);
+
+    while(indexAry.indexOf(index) >= 0){
+      index = Math.floor(Math.random()* len);
+    }
+    indexAry.push(index);
+  }
+
+  indexAry.sort();
+
+  var ryakugo = "";
+
+  for(var i = 0; i < indexAry.length; i++){
+    var subStart = indexAry[i];
+    ryakuChar = txt.substr(subStart,1);
+    ryakugo += ryakuChar;
+  }
+
+  document.getElementById("ryaku").innerHTML = txt + "を略すと<br>「" + ryakugo + "」";
+}
+
+</script>
+</head>
 <body>
-<h2>俺のページｗｗｗｗ</h2>
-よう、しゅんすけｗｗｗ<br>
-ホームページつくったったわｗｗｗ
-github捗りすぎｗｗｗ
+<h2>モバイルひろちむ</h2>
+
+<p>ひらがなかカタカナで略したい単語入れてみぃ</p>
+
 <form>
-  <input type="button"onClick="warota()"value="押してみｗｗｗ">
+  <input type="text" id="inText" value="">
+  <input type="button" onClick="hiroki()" value="略す">
   </form>
+
+<p id="ryaku"></p>
 </body>
