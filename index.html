@@ -1,44 +1,33 @@
 <head>
 <script type="text/javascript">
-function hiroki(){
-  var txt = document.getElementById("inText").value;
+function hirokify(){
+	// 略す対象語を取得
+	var targetTxt = document.getElementById("inText").value;
+	
+	// 結果となる略語
+	var result = targetTxt;
 
-  var len = txt.length;
+	// 2文字以下の単語が指定された場合、エラー
+  var len = targetTxt.length;
   if(len <= 2){
-    document.getElementById("ryaku").innerHTML = txt + "って、これ以上略せないやろ！";
+    document.getElementById("ryaku").innerHTML = targetTxt + "って、これ以上略せないやろ！";
     return;
   }
 
-  var ryakuLength = Math.floor(Math.random()* len);
-  if(ryakuLength < 2){
-    ryakuLength = 2;
-  }
+	// 削除する文字数を決定
+	// 一文字以上、元の文字数以下
+	var deleteAmount = Math.floor(Math.random() * (len-1))+1;
+	console.log("削除する文字数"+deleteAmount);
 
-  console.log("ryakuLen = " + ryakuLength);
+	for(i = 0; i < deleteAmount; i++){
+		var deleteIndex = Math.floor(Math.random() * result.length);
+		console.log("削除する文字位置"+deleteIndex);
+		console.log(result.substring(0,deleteIndex));
+		console.log(result.substring(deleteIndex+2,result.length));
+		result = result.substring(0,deleteIndex) + result.substring(deleteIndex+1,result.length);
+	}
 
-  var indexAry = [];
-  var index;
-  for(var i = 0; i < ryakuLength; i ++){
-
-    index = Math.floor(Math.random()* len);
-
-    while(indexAry.indexOf(index) >= 0){
-      index = Math.floor(Math.random()* len);
-    }
-    indexAry.push(index);
-  }
-
-  indexAry.sort();
-
-  var ryakugo = "";
-
-  for(var i = 0; i < indexAry.length; i++){
-    var subStart = indexAry[i];
-    ryakuChar = txt.substr(subStart,1);
-    ryakugo += ryakuChar;
-  }
-
-  document.getElementById("ryaku").innerHTML = txt + "を略すと<br>「" + ryakugo + "」";
+  document.getElementById("ryaku").innerHTML = targetTxt + "を略すと<br>「" + result + "」";
 }
 
 </script>
@@ -46,11 +35,11 @@ function hiroki(){
 <body>
 <h2>モバイルひろちむ</h2>
 
-<p>略したい単語を入れてみtest</p>
+<p>略したい単語を入れてみ</p>
 
 <form>
   <input type="text" id="inText" value="マサチューセッツ">
-  <input type="button" onClick="hiroki()" value="略す">
+  <input type="button" onClick="hirokify()" value="略す">
   </form>
 
 <p id="ryaku"></p>
