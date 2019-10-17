@@ -1,5 +1,10 @@
 # hello-world
-test
+This page is made for learning basic web design.
 
-w
-tesutodainikai
+I used
++ HTML
++ Jquery
++ CSS
+
+You can access the page by the link below.
+http://karintomania.github.io/hirotimu/
