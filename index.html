@@ -8,11 +8,11 @@ function hirokify(){
 	var result = targetTxt;
 
 	// 2文字以下の単語が指定された場合、エラー
-  var len = targetTxt.length;
-  if(len <= 2){
-    document.getElementById("ryaku").innerHTML = targetTxt + "って、これ以上略せないやろ！";
-    return;
-  }
+		var len = targetTxt.length;
+	if(len <= 2){
+		document.getElementById("ryaku").innerHTML = targetTxt + "って、これ以上略せないやろ！";
+		return;
+	}
 
 	// 削除する文字数を決定
 	// 一文字以上、元の文字数以下
