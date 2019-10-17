@@ -1,45 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script type="text/javascript">
-function hirokify(){
-	// 略す対象語を取得
-	var targetTxt = document.getElementById("inText").value;
-	
-	// 結果となる略語
-	var result = targetTxt;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
+	<script src="js/jquery-3.4.1.slim.min.js"></script>
+	<script src="js/hirotimu.js"></script>
+	<title>Document</title>
 
-	// 2文字以下の単語が指定された場合、エラー
-		var len = targetTxt.length;
-	if(len <= 2){
-		document.getElementById("ryaku").innerHTML = targetTxt + "って、これ以上略せないやろ！";
-		return;
-	}
-
-	// 削除する文字数を決定
-	// 一文字以上、元の文字数以下
-	var deleteAmount = Math.floor(Math.random() * (len-1))+1;
-	console.log("削除する文字数"+deleteAmount);
-
-	// 削除する文字インデックスを生成
-	// 一文字削除を実行
-	for(i = 0; i < deleteAmount; i++){
-		var deleteIndex = Math.floor(Math.random() * result.length);
-		result = result.substring(0,deleteIndex) + result.substring(deleteIndex+1,result.length);
-	}
-
-  document.getElementById("ryaku").innerHTML = targetTxt + "を略すと<br>「" + result + "」";
-}
-
-</script>
 </head>
 <body>
-<h2>モバイルひろちむ</h2>
-
-<p>略したい単語を入れてみ</p>
-
-<form>
-  <input type="text" id="inText" value="マサチューセッツ">
-  <input type="button" onClick="hirokify()" value="略す">
-  </form>
-
-<p id="ryaku"></p>
+	<main>
+		<h1>モバイルひろちむ</h1>
+		<p>略したい言葉を入れてみい！</p>
+		<div class="inputLine">
+			<input id="target" type="text" placeholder="モバイルひろちむ" />
+			<button id="ryakuBottun">略す</button>
+		</div>
+		<div class="resultDisp">
+			<span id="error"></span>
+			<span id="ryakugo">モバちむ</span>
+		</div>
+	</main>
 </body>
+</html>
